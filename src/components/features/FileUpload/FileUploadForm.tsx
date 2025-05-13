@@ -4,11 +4,7 @@ import * as React from "react"
 import { Button } from "@/components/common/atoms/Button"
 import { FileInput } from "@/components/common/atoms/FileInput"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/common/atoms/Card"
-
-interface FileUploadFormProps {
-    onUpload: (file: File) => Promise<void>
-    isUploading?: boolean
-}
+import { FileUploadFormProps } from "@/interfaces"
 
 export function FileUploadForm({ onUpload, isUploading = false }: FileUploadFormProps) {
     const [file, setFile] = React.useState<File | null>(null)

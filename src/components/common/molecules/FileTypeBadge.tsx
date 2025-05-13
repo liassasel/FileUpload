@@ -1,11 +1,7 @@
 import { FileIcon, FileTextIcon, ImageIcon, FileArchiveIcon, FileAudioIcon, FileVideoIcon } from "lucide-react"
 import { Badge } from "@/components/common/atoms/Badge"
 import { cn } from "@/lib/utils"
-
-interface FileTypeBadgeProps {
-    fileType: string
-    className?: string
-}
+import { FileTypeBadgeProps } from "@/interfaces"
 
 export function FileTypeBadge({ fileType, className }: FileTypeBadgeProps) {
     const getFileTypeInfo = (type: string) => {

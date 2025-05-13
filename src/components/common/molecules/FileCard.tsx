@@ -6,23 +6,7 @@ import { Download, Eye, File, Trash2 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "../atoms/Button"
 import { Card, CardContent, CardFooter } from "../atoms/Card"
-
-export interface FileInfo {
-    id: string
-    name: string
-    size: string
-    type: string
-    uploadedAt: string
-    url: string
-}
-
-interface FileCardProps {
-    file: FileInfo
-    onView?: (file: FileInfo) => void
-    onDownload?: (file: FileInfo) => void
-    onDelete?: (file: FileInfo) => void
-    className?: string
-}
+import { FileCardProps } from "@/interfaces"
 
 export function FileCard({ file, onView, onDownload, onDelete, className }: FileCardProps) {
     const isViewable = React.useMemo(() => {

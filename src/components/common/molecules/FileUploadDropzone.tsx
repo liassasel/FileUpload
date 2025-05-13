@@ -3,15 +3,8 @@
 import * as React from "react"
 import { UploadCloud } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { FileUploadDropzoneProps } from "@/interfaces"
 
-interface FileUploadDropzoneProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "value"> {
-    onFilesSelected: (files: FileList) => void
-    value?: File | null
-    helperText?: string
-    maxSize?: number // in bytes
-    accept?: string
-    className?: string
-}
 
 export function FileUploadDropzone({
     onFilesSelected,

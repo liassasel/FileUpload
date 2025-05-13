@@ -1,11 +1,5 @@
-import { type FileInfo, FileCard } from "@/components/common/molecules/FileCard"
-
-interface FileGridProps {
-    files: FileInfo[]
-    onView?: (file: FileInfo) => void
-    onDownload?: (file: FileInfo) => void
-    onDelete?: (file: FileInfo) => void
-}
+import { FileGridProps } from "@/interfaces"
+import { FileCard } from "../molecules/FileCard"
 
 export function FileGrid({ files, onView, onDownload, onDelete }: FileGridProps) {
     if (files.length === 0) {

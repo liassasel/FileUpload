@@ -7,7 +7,6 @@ const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
   title: "File Manager",
-  description: "Upload, view and manage your files",
 }
 
 export default function RootLayout({

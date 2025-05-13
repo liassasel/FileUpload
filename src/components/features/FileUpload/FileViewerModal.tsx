@@ -1,19 +1,13 @@
 "use client"
 import { X } from "lucide-react"
 import { Button } from "@/components/common/atoms/Button"
-import type { FileInfo } from "@/components/common/molecules/FileCard"
-
-interface FileViewerModalProps {
-    file: FileInfo | null
-    onClose: () => void
-}
+import { FileViewerModalProps } from "@/interfaces"
 
 export function FileViewerModal({ file, onClose }: FileViewerModalProps) {
     if (!file) return null
 
     const isImage = file.type.startsWith("image/")
     const isPdf = file.type === "application/pdf"
-    // Eliminamos la opción de texto plano
 
     return (
         <div className="fixed inset-0 z-50 bg-background/80 backdrop-blur-sm">

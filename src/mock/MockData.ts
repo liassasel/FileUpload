@@ -1,4 +1,4 @@
-import { FileInfo } from "@/components/common/molecules/FileCard";
+import { FileInfo } from "@/interfaces";
 
 export const mockFiles: FileInfo[] = [
     {

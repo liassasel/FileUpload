@@ -4,12 +4,8 @@ import * as React from "react"
 import { UploadCloud } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+import { FileInputProps } from "@/interfaces"
 
-interface FileInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-    label?: string
-    helperText?: string
-    containerClassName?: string
-}
 
 const FileInput = React.forwardRef<HTMLInputElement, FileInputProps>(
     ({ className, label, helperText, containerClassName, ...props }, ref) => {

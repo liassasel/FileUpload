@@ -1,14 +1,7 @@
 "use client"
 import { Download, Eye, File, FileText, ImageIcon, Trash2 } from "lucide-react"
 import { Button } from "@/components/common/atoms/Button"
-import type { FileInfo } from "@/components/common/molecules/FileCard"
-
-interface FileListProps {
-    files: FileInfo[]
-    onView?: (file: FileInfo) => void
-    onDownload?: (file: FileInfo) => void
-    onDelete?: (file: FileInfo) => void
-}
+import { FileListProps } from "@/interfaces"
 
 export function FileList({ files, onView, onDownload, onDelete }: FileListProps) {
     if (files.length === 0) {

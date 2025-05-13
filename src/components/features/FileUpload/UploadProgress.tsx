@@ -1,12 +1,6 @@
 import { Progress } from "@/components/common/atoms/Progress"
+import { UploadProgressProps } from "@/interfaces"
 import { FileIcon, CheckCircle, XCircle } from "lucide-react"
-
-interface UploadProgressProps {
-    fileName: string
-    progress: number
-    status: "uploading" | "success" | "error"
-    error?: string
-}
 
 export function UploadProgress({ fileName, progress, status, error }: UploadProgressProps) {
     return (

@@ -1,20 +1,14 @@
 "use client"
 
+import { ToastOptions } from "@/interfaces"
 // Este archivo es un placeholder para el hook use-toast
 // En una implementación real, este archivo contendría la lógica para mostrar notificaciones toast
 // Para simplificar, solo exportamos un hook básico
 
 import { useState } from "react"
 
-type ToastType = "default" | "success" | "error" | "warning" | "info"
+export type ToastType = "default" | "success" | "error" | "warning" | "info"
 
-interface ToastOptions {
-    title?: string
-    description?: string
-    type?: ToastType
-    duration?: number
-    id?: number
-}
 
 export function useToast() {
     const [toasts, setToasts] = useState<ToastOptions[]>([])

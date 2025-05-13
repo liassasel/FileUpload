@@ -2,13 +2,8 @@
 
 import { FolderUp } from "lucide-react"
 import { Button } from "@/components/common/atoms/Button"
+import { EmptyStateProps } from "@/interfaces"
 
-interface EmptyStateProps {
-    title?: string
-    description?: string
-    actionLabel?: string
-    onAction?: () => void
-}
 
 export function EmptyState({
     title = "No files uploaded",

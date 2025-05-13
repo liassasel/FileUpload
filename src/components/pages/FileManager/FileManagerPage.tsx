@@ -2,11 +2,11 @@
 
 import * as React from "react"
 import { PageLayout } from "@/components/common/templates/PageLayout"
-import type { FileInfo } from "@/components/common/molecules/FileCard"
 import { FileList } from "@/components/common/organisms/FileList"
 import { FileUploadForm } from "@/components/features/FileUpload/FileUploadForm"
 import { FileViewerModal } from "@/components/features/FileUpload/FileViewerModal"
 import { mockFiles } from "@/mock/MockData"
+import { FileInfo } from "@/interfaces"
 
 
 export function FileManagerPage() {
