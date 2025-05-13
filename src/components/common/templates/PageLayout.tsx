@@ -1,5 +1,5 @@
 import type * as React from "react"
-import { ThemeToggle } from "@/components/common/atoms/theme-toggle"
+import { ThemeToggle } from "@/components/common/atoms/ThemeToggle"
 
 interface PageLayoutProps {
     children: React.ReactNode
