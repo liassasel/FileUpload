@@ -6,7 +6,11 @@ import { FileInput } from "@/components/common/atoms/FileInput"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/common/atoms/Card"
 import { FileUploadFormProps } from "@/interfaces"
 
-export function FileUploadForm({ onUpload, isUploading = false }: FileUploadFormProps) {
+export function FileUploadForm({
+    onUpload,
+    isUploading = false,
+    acceptedTypes = "*"
+}: FileUploadFormProps) {
     const [file, setFile] = React.useState<File | null>(null)
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,10 +40,19 @@ export function FileUploadForm({ onUpload, isUploading = false }: FileUploadForm
             </CardHeader>
             <form onSubmit={handleSubmit}>
                 <CardContent>
-                    <FileInput id="file-upload" onChange={handleFileChange} helperText="Upload any file type up to 10MB" />
+                    <FileInput
+                        id="file-upload"
+                        onChange={handleFileChange}
+                        helperText="Upload any file type up to 10MB"
+                        accept={acceptedTypes}
+                    />
                 </CardContent>
                 <CardFooter>
-                    <Button type="submit" disabled={!file || isUploading} className="w-full">
+                    <Button
+                        type="submit"
+                        disabled={!file || isUploading}
+                        className="w-full"
+                    >
                         {isUploading ? "Uploading..." : "Upload File"}
                     </Button>
                 </CardFooter>

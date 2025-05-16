@@ -77,11 +77,13 @@ export interface FileListProps {
 export interface FileUploadFormProps {
     onUpload: (file: File) => Promise<void>
     isUploading?: boolean
+    acceptedTypes?: string
 }
 
 export interface FileViewerModalProps {
     file: FileInfo | null
     onClose: () => void
+    onDownload: (file: FileInfo) => void
 }
 
 export interface UploadProgressProps {
@@ -97,4 +99,12 @@ export interface ToastOptions {
     type?: ToastType
     duration?: number
     id?: number
+}
+
+export interface FileResponse {
+    id: string;
+    original_name: string;
+    file_size: number;
+    file_extension: string;
+    uploaded_at: string;
 }

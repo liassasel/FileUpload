@@ -1,17 +1,16 @@
 "use client"
+
 import { Download, Eye, File, FileText, ImageIcon, Trash2 } from "lucide-react"
 import { Button } from "@/components/common/atoms/Button"
 import { FileListProps } from "@/interfaces"
+import { useEffect, useState } from "react"
 
 export function FileList({ files, onView, onDownload, onDelete }: FileListProps) {
-    if (files.length === 0) {
-        return (
-            <div className="flex flex-col items-center justify-center h-64 text-center">
-                <p className="text-muted-foreground mb-2">No files uploaded yet</p>
-                <p className="text-sm text-muted-foreground">Upload files to see them here</p>
-            </div>
-        )
-    }
+    const [isClient, setIsClient] = useState(false)
+
+    useEffect(() => {
+        setIsClient(true)
+    }, [])
 
     const getFileIcon = (fileType: string) => {
         if (fileType.startsWith("image/")) {
@@ -26,6 +25,17 @@ export function FileList({ files, onView, onDownload, onDelete }: FileListProps)
     const isViewable = (fileType: string) => {
         const viewableTypes = ["image/jpeg", "image/png", "image/gif", "image/svg+xml", "application/pdf"]
         return viewableTypes.includes(fileType)
+    }
+
+    if (!isClient) return null
+
+    if (files.length === 0) {
+        return (
+            <div className="flex flex-col items-center justify-center h-64 text-center">
+                <p className="text-muted-foreground mb-2">No files uploaded yet</p>
+                <p className="text-sm text-muted-foreground">Upload files to see them here</p>
+            </div>
+        )
     }
 
     return (
@@ -46,34 +56,42 @@ export function FileList({ files, onView, onDownload, onDelete }: FileListProps)
                             </span>
                         </div>
                         <div className="col-span-2 text-sm text-muted-foreground">{file.size}</div>
-                        <div className="col-span-2 text-sm text-muted-foreground truncate" title={file.type}>
-                            {file.type.split("/")[1] || file.type}
+                        <div className="col-span-2 text-sm text-muted-foreground truncate">
+                            {file.type.split("/")[1]?.toUpperCase() || "FILE"}
                         </div>
                         <div className="col-span-3 flex items-center justify-end gap-2">
                             {isViewable(file.type) && onView && (
-                                <Button variant="ghost" size="sm" onClick={() => onView(file)} title="View">
-                                    <Eye className="h-4 w-4" />
-                                    <span className="sr-only">View</span>
-                                </Button>
-                            )}
-                            {onDownload && (
-                                <Button variant="ghost" size="sm" onClick={() => onDownload(file)} title="Download">
-                                    <Download className="h-4 w-4" />
-                                    <span className="sr-only">Download</span>
-                                </Button>
-                            )}
-                            {onDelete && (
                                 <Button
                                     variant="ghost"
                                     size="sm"
-                                    className="text-destructive hover:text-destructive-foreground hover:bg-destructive"
-                                    onClick={() => onDelete(file)}
-                                    title="Delete"
+                                    onClick={() => onView(file)}
+                                    title="View"
+                                    aria-label="View file"
                                 >
-                                    <Trash2 className="h-4 w-4" />
-                                    <span className="sr-only">Delete</span>
+                                    <Eye className="h-4 w-4" />
                                 </Button>
                             )}
+
+                            <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={() => onDownload?.(file)}
+                                title="Download"
+                                aria-label="Download file"
+                            >
+                                <Download className="h-4 w-4" />
+                            </Button>
+
+                            <Button
+                                variant="ghost"
+                                size="sm"
+                                className="text-destructive hover:text-destructive-foreground hover:bg-destructive"
+                                onClick={() => onDelete?.(file)}
+                                title="Delete"
+                                aria-label="Delete file"
+                            >
+                                <Trash2 className="h-4 w-4" />
+                            </Button>
                         </div>
                     </div>
                 ))}

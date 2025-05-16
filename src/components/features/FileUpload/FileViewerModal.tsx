@@ -1,13 +1,19 @@
 "use client"
+
 import { X } from "lucide-react"
 import { Button } from "@/components/common/atoms/Button"
 import { FileViewerModalProps } from "@/interfaces"
 
-export function FileViewerModal({ file, onClose }: FileViewerModalProps) {
+export function FileViewerModal({ file, onClose, onDownload }: FileViewerModalProps) {
     if (!file) return null
 
     const isImage = file.type.startsWith("image/")
     const isPdf = file.type === "application/pdf"
+
+    const handleDownload = () => {
+        onDownload(file)
+        onClose()
+    }
 
     return (
         <div className="fixed inset-0 z-50 bg-background/80 backdrop-blur-sm">
@@ -21,7 +27,7 @@ export function FileViewerModal({ file, onClose }: FileViewerModalProps) {
                 </div>
                 <div className="h-[60vh] overflow-auto border rounded-md p-2">
                     {isImage && (
-                        <img src={file.url || "/placeholder.svg"} alt={file.name} className="max-w-full h-auto mx-auto" />
+                        <img src={file.url} alt={file.name} className="max-w-full h-auto mx-auto" />
                     )}
                     {isPdf && <iframe src={file.url} title={file.name} className="w-full h-full" />}
                     {!isImage && !isPdf && (
@@ -34,10 +40,8 @@ export function FileViewerModal({ file, onClose }: FileViewerModalProps) {
                     <Button variant="outline" onClick={onClose}>
                         Close
                     </Button>
-                    <Button asChild>
-                        <a href={file.url} download={file.name}>
-                            Download
-                        </a>
+                    <Button onClick={handleDownload}>
+                        Download
                     </Button>
                 </div>
             </div>
